@@ -1,0 +1,54 @@
+npm init -y
+npm i -S express
+
+Middleware : 로직 순서 처리, 에러 처리
+라우팅 : 주소에 대한 서비스 요청 정의
+
+req, res : http 모듈의 객체, express는 이 객체들의 메소드들을 자동으로 등록해뒀기 때문에 편리하다.
+
+npm i -S morgan
+
+morgan : log 를 보여주는 라이브러리. ( 설치 후 simple-api 폴더 -> app.js )
+
+app.use : middleware 등록
+
+error -> npm i -S http-status-codes 를 설치해서 404 같은 코드를 직관적으로 바꿔줌 NOT_FOUND와 같이
+
+post 시에는 보안상 이유로 body에 포함시키는데 그것을 해독하는 것이 body-parser (설치)
+
+post : curl -X POST -H "Content-Type: application/json; charset=utf-8" -d '{"name": "csh"}' http://localhost:3000/accounts
+
+put : POST -> PUT 으로  수정
+
+delete : curl -X DELETE http://localhost:3000/accounts/3
+
+코드안에 api를 분리한다 (api -> account 폴더 -> controller, index 생성)
+
+datagrip 설정.....;; 어려움 잘따라하길 ( 맥 방화벽 해제 )
+
+simple-api-server 폴더 생성 ( 임시 )
+
+npm i -S mysql (mysql lib) -> mysql.js 사용방법
+
+config 폴더 생성 -> test.js를 mysql.js로 변경하였음
+==============test.js======================================
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'as1371002775',
+  database: 'apiserver'
+});
+
+connection.connect();
+
+connection.query('SELECT 1 + 1 AS result', (error, results, fields) => {
+  if(error) throw error;
+  console.log('Connected and Value: ' + results[0].result);
+});
+
+connection.end();
+============================================================
+컨트롤러에 디비 연동 코드 등록 6~8번 줄
+
+숙제.. id를 감싸라
