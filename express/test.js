@@ -15,6 +15,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, host, ()=>{
   console.log(`Run at http://${host}:${port}/`);
-})
+});
 
 //curl -X GET 0.0.0.0:3000 : 인터넷 안키고 받아오기 자세한 정보는 -v 옵션
