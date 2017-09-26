@@ -4,7 +4,7 @@
 module.exports = {
   host: 'localhost',
   user: 'root',
-  password: 'as1371002775',
+  password: '',
   database: 'apiserver'
 }
 
